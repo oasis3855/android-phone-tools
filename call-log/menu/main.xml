@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.android_calllog_tool02.MainActivity" >
+
+    
+    <item android:id="@+id/menu_query_log" android:title="通話履歴の表示" android:orderInCategory="100"></item>
+    <item android:id="@+id/menu_add_dummy_log" android:title="通話履歴の追加" android:orderInCategory="100"></item><item android:id="@+id/menu_del_log" android:orderInCategory="100" android:title="通話履歴の選択削除"></item><item android:id="@+id/menu_about" android:orderInCategory="100" android:title="このアプリについて" app:showAsAction="never" /><item android:id="@+id/menu_quit" android:title="終了" android:orderInCategory="100"></item>
+    
+    
+
+</menu>
