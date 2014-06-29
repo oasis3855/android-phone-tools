@@ -2,6 +2,9 @@
     Android 通話履歴の表示・追加・削除のための基本機能サンプルプログラム
     
     (C) 2014 INOUE Hirokazu
+    
+    Version 1.0 (2014/06/28) 
+    Version 1.1 (2014/06/29) support Android 2.3.3, CSV export
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +31,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.widget.LinearLayout;
@@ -38,11 +41,9 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.text.InputType;
 import android.widget.DatePicker;
-
 import java.util.Calendar;
 import java.text.*;
 import java.util.Date;
-
 import android.widget.ScrollView;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
@@ -50,16 +51,23 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
-
 import android.widget.Toast;
-
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import android.os.Environment;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MainActivity extends ActionBarActivity {
+    
+    private int currentapiVersion = 0;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        currentapiVersion = android.os.Build.VERSION.SDK_INT;
     }
     
     @Override
@@ -100,6 +108,11 @@ public class MainActivity extends ActionBarActivity {
             DeleteLog_InputDlg();
             return true;
         }
+        // 「CSVファイルに出力」メニュー
+        else if (id == R.id.menu_csv_export) {
+            ExportCSV();
+            return true;
+        }
         // 「プログラム終了」メニューが押された場合
         else if (id == R.id.menu_quit) {
             android.os.Process.killProcess(android.os.Process.myPid());
@@ -112,6 +125,7 @@ public class MainActivity extends ActionBarActivity {
      * 通話履歴表示のための期間を入力するAlertDialog
      * 
      ************/
+    @SuppressLint("NewApi")     // setCalendarViewShownがAPI 11以下でサポートされていないため回避措置
     private void QueryLog_InputDlg(){
         // 表示開始日、表示終了日をセットする変数
         final Calendar cal[] = new Calendar[2];
@@ -128,7 +142,7 @@ public class MainActivity extends ActionBarActivity {
         layout.addView(text1);
         // 表示開始日を選択するDatePicker
         final DatePicker date1 = new DatePicker(MainActivity.this);
-        date1.setCalendarViewShown(false);
+        if (currentapiVersion >= 11) date1.setCalendarViewShown(false);
         Calendar calNow = Calendar.getInstance();
         calNow.add(Calendar.MONTH, -1);
         date1.updateDate(calNow.get(Calendar.YEAR), calNow.get(Calendar.MONTH), calNow.get(Calendar.DAY_OF_MONTH));
@@ -140,7 +154,7 @@ public class MainActivity extends ActionBarActivity {
         layout.addView(text2);
         // 表示終了日を選択するDatePicker
         final DatePicker date2 = new DatePicker(MainActivity.this);
-        date2.setCalendarViewShown(false);
+        if (currentapiVersion >= 11) date2.setCalendarViewShown(false);
         layout.addView(date2);
         
         // AlertDialogを構築する
@@ -467,6 +481,57 @@ public class MainActivity extends ActionBarActivity {
         );
         // 削除したレコードの件数を返す
         return(result);
+    }
+    
+    /*************
+     * CSVファイルに出力（エクスポート）
+     *
+     ************/
+    private void ExportCSV() {
+        String filename = Environment.getExternalStorageDirectory() + "/CallLog.csv";
+        // 通話履歴の取得
+        ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(
+            CallLog.Calls.CONTENT_URI,  // データの種類
+            null,   // 項目(null 全項目)
+            null,   // クエリ文字列 (nullの場合すべてのデータ対象)
+            null,   // (クエリ文字列内のプレースホルダーに代入する値を格納した配列)
+            CallLog.Calls.DEFAULT_SORT_ORDER    // ソート順序
+        );
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        // クエリ結果を1つずつ、一時変数の文字列に格納していく
+        try {
+            FileOutputStream stream = new FileOutputStream(filename,false);
+            OutputStreamWriter writer = new OutputStreamWriter(stream,"UTF-8");
+            writer.write("TYPE,NUMBER,DATE,DURATION\n");
+            if (cursor.moveToFirst()) {
+                do{
+                    // 発信・着信・未応答
+                    String callType = cursor.getString(cursor.getColumnIndex("TYPE"));
+                    if(callType.equals(String.valueOf(CallLog.Calls.INCOMING_TYPE))){
+                        writer.write("in,");
+                    }
+                    else if(callType.equals(String.valueOf(CallLog.Calls.OUTGOING_TYPE))){
+                        writer.write("out,");
+                    }
+                    else if(callType.equals(String.valueOf(CallLog.Calls.MISSED_TYPE))){
+                        writer.write("miss,");
+                    }
+                    // 電話番号
+                    writer.write(cursor.getString(cursor.getColumnIndex("NUMBER")) + ",");
+                    // 日時
+                    Date date = new Date(cursor.getLong(cursor.getColumnIndex("DATE")));
+                    writer.write(dateFormat.format(date) + ",");
+                    // 通話時間
+                    writer.write(cursor.getString(cursor.getColumnIndex("DURATION")) + "\n");
+                }  while (cursor.moveToNext());
+                writer.close();
+                stream.close();
+            }
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "ファイル書き込み中にエラーが発生しました", Toast.LENGTH_LONG).show();
+        }
+        Toast.makeText(MainActivity.this, "SD Card内に\n"+filename+"を作成しました", Toast.LENGTH_LONG).show();
     }
     
     /*************
