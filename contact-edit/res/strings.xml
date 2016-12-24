@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ContactsEditor</string>
+    <string name="action_settings">設定</string>
+    <string name="action_quit">終了</string>
+    <string name="action_list_contacts">連絡先一覧表示</string>
+    <string name="action_delete_contacts">連絡先 条件削除</string>
+</resources>

@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.example.vm.contactseditor.MainActivity">
+    <item
+        android:orderInCategory="100"
+        android:id="@+id/action_list_contacts"
+        android:title="@string/action_list_contacts"/>
+    <item
+        android:title="@string/action_delete_contacts"
+        android:orderInCategory="101"
+        android:id="@+id/action_delete_contacts"/>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="102"
+        android:title="@string/action_settings"
+        app:showAsAction="never"/>
+    <item
+        android:title="@string/action_quit"
+        android:orderInCategory="103"
+        android:id="@+id/action_quit"/>
+</menu>
