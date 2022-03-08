@@ -1,6 +1,6 @@
 ## Android 連絡先一覧表示・一括削除プログラム<br/>ソースコードの概略説明<!-- omit in toc -->
 
-[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [android-phonetools](../) > [contacts-editor](README.md) > ***ソースコード説明*** (this page)
+[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [android-phonetools](../README.md) > [contacts-editor](README.md) > ***ソースコード説明*** (this page)
 
 <br />
 <br />

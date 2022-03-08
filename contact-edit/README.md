@@ -1,6 +1,6 @@
 ## Android 連絡先一覧表示・一括削除プログラム<br/>Android Contacts Editor<!-- omit in toc -->
 
-[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [android-phonetools](../) > ***contacts-editor*** (this page)
+[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [android-phonetools](../README.md) > ***contacts-editor*** (this page)
 
 <br />
 <br />
@@ -11,18 +11,18 @@ Last Updated : Dec. 2016
 - [概要](#概要)
 - [動作確認済みAndroidバージョン](#動作確認済みandroidバージョン)
 - [開発の背景](#開発の背景)
+- [ソースコードの概略説明](#ソースコードの概略説明)
 - [バージョンアップ情報](#バージョンアップ情報)
 - [ライセンス](#ライセンス)
-- [ソースコードの概略説明](#ソースコードの概略説明)
 
 <br />
 <br />
 
 ## ソフトウエアのダウンロード
 
-- [このGitHubリポジトリを参照する（ソースコード）](./)
-- [このGitHubリポジトリを参照する（apkファイル）](./apk/)
-- [Googleドライブからapkファイルやソースコードの圧縮パッケージをダウンロードする](https://drive.google.com/drive/folders/0B7BSijZJ2TAHZVp6NldjLUJPXzQ?usp=sharing)
+- ![download icon](../readme_pics/soft-ico-download-darkmode.gif) [このGitHubリポジトリを参照する（ソースコード）](./)
+- ![download icon](../readme_pics/soft-ico-download-darkmode.gif) [このGitHubリポジトリを参照する（apkファイル）](./apk/)
+- ![download icon](../readme_pics/soft-ico-download-darkmode.gif) [Googleドライブからapkファイルやソースコードの圧縮パッケージをダウンロードする](https://drive.google.com/drive/folders/0B7BSijZJ2TAHZVp6NldjLUJPXzQ?usp=sharing)
 
 ## 概要
 
@@ -63,6 +63,11 @@ SDK API16で構築したため、Android 4.1 以降のみで実行可能
 
 ![再起動毎に追加されていくNTTドコモのサービスダイヤル番号 ](readme_pics/android-contactsedit-servicedial.jpg)
 
+## ソースコードの概略説明
+
+- [ソースコードの概略説明はこちらのページ](README-tech.md)
+
+
 ## バージョンアップ情報
 
 - Version 1.0 (2016/12/23)
@@ -75,8 +80,4 @@ SDK API16で構築したため、Android 4.1 以降のみで実行可能
 
 <br />
 <br />
-
-## ソースコードの概略説明
-
-- [ソースコードの概略説明はこちらのページ](README-tech.md)
 

@@ -1,6 +1,6 @@
 ## Android 通話履歴の表示・追加・削除プログラム<br />Android  Call Log read/add/delete<!-- omit in toc -->
 
-[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [android-phonetools](../) > ***call-log-edit*** (this page)
+[Home](https://oasis3855.github.io/webpage/) > [Software](https://oasis3855.github.io/webpage/software/index.html) > [Software Download](https://oasis3855.github.io/webpage/software/software-download.html) > [android-phonetools](../README.md) > ***call-log-edit*** (this page)
 
 <br />
 <br />
@@ -18,9 +18,9 @@ Last Updated : Jun. 2014
 
 ## ソフトウエアのダウンロード
 
-- [このGitHubリポジトリを参照する（ソースコード）](./)
-- [このGitHubリポジトリを参照する（apkファイル）](./apk/)
-- [Googleドライブからapkファイルやソースコードの圧縮パッケージをダウンロードする](https://drive.google.com/folderview?id=0B7BSijZJ2TAHcWFSNGZnbndrcEU&usp=sharing)
+- ![download icon](../readme_pics/soft-ico-download-darkmode.gif) [このGitHubリポジトリを参照する（ソースコード）](./)
+- ![download icon](../readme_pics/soft-ico-download-darkmode.gif) [このGitHubリポジトリを参照する（apkファイル）](./apk/)
+- ![download icon](../readme_pics/soft-ico-download-darkmode.gif) [Googleドライブからapkファイルやソースコードの圧縮パッケージをダウンロードする](https://drive.google.com/folderview?id=0B7BSijZJ2TAHcWFSNGZnbndrcEU&usp=sharing)
 
 ## 概要
 
